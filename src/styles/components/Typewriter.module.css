@@ -1,0 +1,25 @@
+.typewriter {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    max-width: 100%;
+    margin-top: 3rem;
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.MegaInputBox {
+    position: absolute;
+    padding: 20px 10px 10px;
+    background-color: var(--payl-dark-gray);
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.MegaInputBox input {
+    background-color: var(--dark-gray);
+    display: block;
+    font-size: 2rem;
+    width: 100%;
+}
