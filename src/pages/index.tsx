@@ -1,8 +1,22 @@
-import Head from 'next/head';
+import GameOverAlert from '@/components/alerts/GameOverAlert';
 import Typewriter from '@/components/typewriter/Typewriter';
 import styles from '@/styles/Home.module.css';
+import { useState } from 'react';
+import Head from 'next/head';
+// swiper bundle styles
+import 'swiper/swiper-bundle.min.css';
+// swiper core styles
+import 'swiper/swiper.min.css';
+
+export type GameStatus =
+    | 'idle'
+    | 'running'
+    | 'game-over:win'
+    | 'game-over:lose';
 
 export default function Home() {
+    const [gameStatus, setGameStatus] = useState<GameStatus>(`idle`);
+
     return (
         <div className={styles.container}>
             <Head>
@@ -19,7 +33,22 @@ export default function Home() {
                     Start typing The characters and phrases appearing in the
                     roller
                 </p>
-                <Typewriter />
+                <Typewriter
+                    emitGameStatus={(gameStatus) => {
+                        setGameStatus(gameStatus);
+                    }}
+                    gameStatus={gameStatus}
+                />
+                {gameStatus.startsWith(`game-over`) ? (
+                    <GameOverAlert
+                        gameStatus={gameStatus}
+                        emitRestartGame={() => {
+                            setGameStatus(`idle`);
+                        }}
+                    />
+                ) : (
+                    ``
+                )}
             </main>
         </div>
     );
